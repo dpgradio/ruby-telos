@@ -11,7 +11,7 @@ Gem::Specification.new do |spec|
   spec.summary       = %q{Library to communicate with Telos devices}
   spec.description   = %q{A library to communicate with Telos devices over the low-level protocol}
   spec.homepage      = ""
-  spec.license       = "MIT"
+  spec.license       = "Apache-2.0"
 
   spec.files         = `git ls-files -z`.split("\x0")
   # spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }
