@@ -9,10 +9,15 @@ module Telos
       self.port = port
     end
 
-    def connect
+    def shows
+    end
+
+    def connect(reader_thread: false)
       @server = TCPSocket.new host, port
+      start_reader_thread if reader_thread
       if block_given?
         yield
+        stop_reader_thread if reader_thread
         @server.close
       end
     end
@@ -28,8 +33,33 @@ module Telos
     end
 
     def read
+      if @mutex
+        @mutex.synchronize do
+          @messages.shift
+        end
+      else
+        _read
+      end
+    end
+
+    private
+    def _read
       response_size = Message.response_size(@server.read(8))
       Message.incoming(@server.read(response_size))
+    end
+
+    def start_reader_thread
+      @messages = []
+      @mutex = Mutex.new
+      @reader_thread ||= Thread.start(@messages) do |messages|
+        loop do
+          message = _read
+          @mutex.synchronize do
+            messages << message
+          end
+        end
+      end
+      Thread.pass # Make sure the reader thread starts
     end
   end
 end
