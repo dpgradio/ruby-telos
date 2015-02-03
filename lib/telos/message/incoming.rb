@@ -39,6 +39,10 @@ module Telos
         arguments
       end
 
+      def inspect
+        %{#<Telos::Message::Incoming command="#{command}" arguments=#{arguments.inspect}>}
+      end
+
       private
       def from_dword(string)
         string.unpack('N')[0]
