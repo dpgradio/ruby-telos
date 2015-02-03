@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["jan.depoorter@medialaan.be"]
   spec.summary       = %q{Library to communicate with Telos devices}
   spec.description   = %q{A library to communicate with Telos devices over the low-level protocol}
-  spec.homepage      = ""
+  spec.homepage      = "http://github.com/q-music/ruby-telos"
   spec.license       = "Apache-2.0"
 
   spec.files         = `git ls-files -z`.split("\x0")
