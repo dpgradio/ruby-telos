@@ -61,5 +61,9 @@ module Telos
       end
       Thread.pass # Make sure the reader thread starts
     end
+
+    def stop_reader_thread
+      @reader_thread.terminate if @reader_thread
+    end
   end
 end
