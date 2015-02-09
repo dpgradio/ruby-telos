@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    telos (0.0.2)
+    telos (0.0.3)
 
 GEM
   remote: https://rubygems.org/
