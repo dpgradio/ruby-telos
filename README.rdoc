@@ -1,0 +1,16 @@
+= Telos ruby gem
+
+== Description
+
+The telos gem was written to communicate with some Telos Nx12 Talk Show systems. Currently only the basic communication is implemented, without further abstractions.
+
+== Usage / Example
+
+  # Open a new connection to a telos device
+  device = Telos::Device.new(host: '192.168.0.5')
+  device.connect do
+    device.write(Telos::Command::EnumerateShows) # Send EnumerateShows command
+    device.read # Read 1 line of Telos output
+    device.write(Telos::Command::ConnectToShow, SSN_: 1, SHOW: 'Show 1', PASS: 0) # Connect to a show
+    ...
+  end
